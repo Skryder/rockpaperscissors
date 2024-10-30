@@ -1,0 +1,16 @@
+
+
+Randomly return one of the following strings - "Rock, Paper, Scissors
+GetComputerChoice
+    Generate a random number between 1 and 3
+    if 1 return Rock
+    if 2 return Paper
+    if 3 return Scissors
+
+
+
+gameLogic
+if human is paper and computer is scissors, human wins
+    if computer is rock, human loses.
+    if computer is paper, draw
+
