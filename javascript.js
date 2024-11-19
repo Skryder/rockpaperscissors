@@ -6,6 +6,53 @@ let humanScore = 0;
 let computerScore = 0;
 const NUM_ROUNDS = 5;
 
+
+let rockBtn = document.querySelector('#rockBtn');
+let scissorsBtn = document.querySelector('#scissorsBtn');
+let paperBtn = document.querySelector('#paperBtn');
+
+let round = document.querySelector('#round');
+let roundCount = 1;
+const results = document.querySelector('#results');
+
+rockBtn.addEventListener('click', () => {onChoice("rock")});
+
+scissorsBtn.addEventListener('click', () => {onChoice("scissors")});
+
+paperBtn.addEventListener('click', () => {onChoice("paper")});
+
+function onChoice(choice) {
+    const roundStatus = document.createElement("p");
+    roundStatus.classList.add("roundStatus");
+
+    roundStatus.textContent = playRound(choice, getComputerChoice());
+    roundCount++;
+    round.textContent = `Round ${roundCount}! FIGHT!`
+    results.appendChild(roundStatus);
+
+    if (roundCount == 6) {
+        const endMessage = document.createElement("h2");
+        const winner = document.createElement('h1');
+        endMessage.textContent = "GAME END!";
+        if (humanScore > computerScore)
+            winner.textContent = "YOU WIN THE GAME!";
+        else if (humanScore === computerScore)
+             winner.textContent = "ITS A TIE!";
+        else  winner.textContent = "YOU LOST THE GAME! :("
+
+        results.appendChild(endMessage);
+        results.appendChild(winner);
+
+        disableButtons();
+    }
+}
+
+function disableButtons() {
+    rockBtn.disabled = true;
+    scissorsBtn.disabled = true;
+    paperBtn.disabled = true;
+}
+
 function getComputerChoice() {
     let choice = Math.ceil(Math.random()*3);
     /*console.log(choice);*/
@@ -62,10 +109,10 @@ function playRound(humanChoice, computerChoice) {
 
 function playGame()
 {
-    for (let ii = 0; ii < NUM_ROUNDS; ii++)
+    /*for (let ii = 0; ii < NUM_ROUNDS; ii++)
     {
         console.log(playRound(getHumanChoice(), getComputerChoice()));
-    }
+    }*/
     console.log("GAME END!");
     if (humanScore > computerScore)
         console.log("YOU WIN THE GAME!");
@@ -74,5 +121,8 @@ function playGame()
     else console.log("YOU LOST THE GAME! :(")
 }
 
-playGame();
+
+
+
+//playGame();
 
